@@ -1,0 +1,169 @@
+body{
+  background-color: black;
+  /* color: rgb(4,23,218); */
+  color:white;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  background-image: url('starry_sky_stars_night.jpg');
+  background-size: auto;
+  background-attachment: fixed;
+}
+#first{
+  height: 100vh;
+  scroll-snap-align: start;
+}
+#second{
+  height: 100vh;
+  scroll-snap-align: start;
+}
+#third{
+  height: 100vh;
+  scroll-snap-align: start;
+}
+
+#dialog-box{
+  /* border: 3px solid white; */
+  box-shadow: 0 0 6px 2px white;
+  width: 100%;
+  content: '';
+  height: 10vh;
+  border-radius: 50px;
+  text-align: center;
+  padding: 1vh;
+  background-color: rgb(0,0,0,0.6);
+}
+.visible-hidden{
+  visibility: hidden;
+}
+.dialog-animate{
+  animation-duration: 4.5s;
+  animation-name: dialogSlidein;
+}
+@keyframes dialogSlidein {
+  0% {
+    visibility: hidden;
+  }
+
+  70%{
+    visibility: hidden;
+    /* height: 0; */
+    height: 10%;
+  }
+
+  100% {
+    margin-left: 0%;
+  }
+}
+#dialog-container{
+  position: absolute;
+  top: 40%;
+}
+#dialog-text{
+  /* font-family: 'Baloo Bhaijaan', cursive; */
+  font-family: 'Raleway';
+  font-size: 28px;
+}
+#myPic-box{
+  height: 15vh;
+  width: 15vh;
+  /* border: 3px solid white; */
+  box-shadow: 0 0 6px 2px white;
+  border-radius: 50%;
+  background-image: url("myPic.jpg");
+  background-size: cover;
+  float: right;
+}
+.myPic-animate{
+  animation-duration: 3s;
+  animation-name: picSlidein;
+}
+@keyframes picSlidein {
+  0% {
+    visibility: hidden;
+    height: 0;
+    width: 0;
+  }
+  50% {
+    visibility: hidden;
+    height: 10px;
+    width: 10px;
+  }
+
+  100% {
+    visibility: visible;
+  }
+}
+
+.boxy{
+  border: 1px solid red;
+}
+
+#second h2, #third h2 {
+  /* font-family: 'Baloo Bhaijaan', cursive; */
+  font-family: 'Raleway';
+  font-size: 4rem;
+}
+#second > .container, #third > .container {
+  padding: 10vh;
+}
+.workImage{
+  width: 100%;
+  border-radius: 20px;
+}
+.workImage:hover{
+  box-shadow: 0 0 6px 3px white;
+}
+#workTitle{
+  padding: 2vh;
+  font-family: 'Baloo Bhaijaan', cursive;
+  font-size: 2rem;
+}
+.nav-arrow{
+  padding: 2vh;
+}
+a > i{
+  font-size:44px;
+}
+#left-icon{
+  transform: translateX(-100%);
+}
+#right-icon{
+  transform: translateX(100%);
+}
+a{
+  color: white;
+}
+a:hover{
+  color: white;
+  text-shadow: 0 0 6px white;
+}
+.contact{
+  width: 100%;
+  border-radius: 10px;
+  background-color: rgb(0,0,0,0.6);
+  box-shadow: 0 0 6px 3px white;
+  font-family: 'Baloo Bhaijaan', cursive;
+  /* font-family: 'Raleway'; */
+  padding: 1vw;
+}
+#myName{
+  font-size: 3rem;
+}
+ul{
+  padding-left: 0;
+  font-size: 1rem;
+  font-family: 'Raleway';
+}
+#profession{
+  font-size: 1.5rem;
+}
+#myName,ul,#profession{
+  padding: 1.5vw;
+}
+#logo{
+  font-family: 'Monoton', cursive;
+  font-size: 5vw;
+}
+#third i{
+  transform: translateY(25%);
+}
