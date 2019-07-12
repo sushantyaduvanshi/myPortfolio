@@ -1,0 +1,19 @@
+h2{
+  font-size: 7vw;
+}
+hr{
+  border: 1.5px solid grey;
+  width: 80%;
+}
+#id_content{
+  width: 97%;
+  border-radius: 15px;
+  padding: 15px;
+}
+table{
+  width: 100%;
+}
+#commentButton{
+  margin-top: 90%;
+  transform: translateY(-100%);
+}

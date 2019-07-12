@@ -68,7 +68,7 @@
         <br>
         <div class="col-lg-6 col-sm-12 text-center">
 
-            <img class="workImage" src="{% static 'portfolio/blogClone.png' %}" alt="Blog Clone">
+            <img class="workImage" src="{% static 'portfolio/blogClone.png' %}" alt="Blog Clone" onclick="blogSite()">
 
         </div>
         <div class="col-lg-12 text-center">
@@ -177,6 +177,9 @@
 
   }
 
+  function blogSite(){
+    window.location.href = "{% url 'blog:blogIndexPage' %}"
+  }
 
 
 </script>

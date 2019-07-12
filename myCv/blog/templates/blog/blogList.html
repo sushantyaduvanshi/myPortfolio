@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% extends 'blog/base.html' %}
+{% load myTags %}
+
+  {% block body_block %}
+    <br><br><br>
+    {% for i in blogList reversed %}
+
+      {% if i.published_date != None %}
+        <h2><a class="blogLink" href="{% url 'blog:blogDisplayPage' pk=i.id %}">{{ i.title | title }}</a></h2>
+        <p class="Info">
+          <strong>Published On : </strong>{{ i.published_date }}<br>
+          <strong>Comments : </strong>{{ i.comments.all | customFilter | length }}<br>
+          <strong>Author : </strong>{{ i.authorName }}
+        </p>
+        <br><div class="container"><div class="container"><hr></div></div><br>
+      {% endif %}
+
+    {% endfor %}
+
+
+  {% endblock %}

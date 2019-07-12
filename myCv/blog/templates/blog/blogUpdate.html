@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% extends 'blog/base.html' %}
+
+    {% block body_block %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'blog/stylesheet/blogCreate.css' %}">
+
+      <br><br>
+      <form method="post">
+        {% csrf_token %}
+        <table>
+          <tr class='row'>
+            <th class="col-xl-2 col-lg-2 col-md-2 col-sm-3">{{ form.title.label }} : </th>
+            <td class="col-xl-10 col-lg-10 col-md-10 col-sm-12">{{ form.title }}</td>
+          </tr>
+
+          <tr class='row'>
+            <th class="col-xl-2 col-lg-2 col-md-2 col-sm-3">{{ form.content.label }} : </th>
+            <td class="col-xl-10 col-lg-10 col-md-10 col-sm-12">{{ form.content }}</td>
+          </tr>
+          <tr class="row">
+            <td class="col-lg-12"><input type="submit" class="btn btn-warning center" name="" value="SAVE"></td>
+          </tr>
+        </table>
+
+      </form>
+
+    {% endblock %}

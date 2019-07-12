@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% extends 'blog/base.html' %}
+  {% block body_block %}
+      {% load staticfiles%}
+      <link rel="stylesheet" href="{% static 'blog/stylesheet/blogDisplay.css' %}">
+
+
+      <div class="jumbotron bg-light-blue text-center">
+        <h2 class="white">{{ blog.title }}</h2>
+      </div>
+      <p>
+        <span class="dark-blue">Posted By : {{ blog.authorName }}</span><br>
+        <span class="dark-blue">On : {{ blog.created_date }}</span>
+      </p>
+      <br><br>
+      <p>
+        {{ blog.content }}
+      </p>
+      <br><br>
+      <div class="container">
+        <div class="row">
+        {% if user.is_authenticated %}
+          {% if user.is_superuser and blog.published_date == None %}
+            <div class="col-lg-2">
+              <a class="btn btn-info btn-block" id="edit" href="{% url 'blog:blogUpdatePage' pk=blog.id %}">Edit</a>
+            </div>
+            <div class="col-lg-2">
+              <a class="btn btn-block btn-info" id="publish" href="{% url 'blog:publishBlogPage' pk=blog.id %}">Publish</a>
+            </div>
+            <div class="col-lg-6"></div>
+            <div class="col-lg-2">
+              <a class="btn btn-block btn-danger" id="delete" href="{% url 'blog:blogDeletePage' pk=blog.id %}">Delete</a>
+            </div>
+          {% else %}
+            {% if blog.authorName == user or user.is_superuser %}
+              <div class="col-lg-2">
+                <a class="btn btn-info btn-block" id="edit" href="{% url 'blog:blogUpdatePage' pk=blog.id %}">Edit</a>
+              </div>
+              <div class="col-lg-8"></div>
+              <div class="col-lg-2">
+                <a class="btn btn-danger btn-block" id="delete" href="{% url 'blog:blogDeletePage' pk=blog.id %}">Delete</a>
+              </div>
+            {% endif %}
+          {% endif %}
+        {% endif %}
+        </div>
+      </div>
+
+      <br><br>
+      <hr>
+      <br><br>
+
+      <h3 class="dark-blue">COMMENTS : </h3><br><br>
+
+      {% for i in blog.comments.all reversed %}
+
+        {% if i.aproved or user.is_superuser or i.post.authorName == user%}
+          <p>
+            <span class="Info">On {{ i.created_date }}, by {{ i.authorName }}</span><br>
+            {{ i.content }}
+            {% if blog.authorName == user or user.is_superuser %}
+              {% if not i.aproved %}
+                <a href="{% url 'blog:aproveCommentPage' pk=i.id %}">Aprove </a>
+                <a href="{% url 'blog:deleteCommentPage' pk=i.id %}">Disaprove </a>
+              {% else %}
+                <a href="{% url 'blog:deleteCommentPage' pk=i.id %}">Delete</a>
+              {% endif %}
+            {% endif %}
+          </p>
+        {% endif %}
+
+      {% endfor %}
+
+      <form method="post">
+        {% csrf_token %}
+        <table>
+          <tr>
+            <td>{{ commentForm.content }}</td>
+            <td><input id='commentButton' class="btn btn-lg bg-light-blue" type="submit" name="" value="COMMENT"></td>
+          </tr>
+        </table>
+      </form>
+
+  {% endblock %}

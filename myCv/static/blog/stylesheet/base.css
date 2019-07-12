@@ -1,0 +1,35 @@
+.bg-dark-blue{
+  background-color: #032A3B;
+}
+.bg-light-blue{
+  background-color: #c2e6ff;
+}
+.bg-light-grey{
+  background-color: grey;
+}
+.dark-blue{
+  color: #032A3B;
+}
+.light-blue{
+  color: #CFECF8;
+}
+.light-grey{
+  color: lightgrey;
+}
+.white{
+  color: #ffffff;
+}
+p{
+  font-size: 1.2rem;
+}
+.blogLink{
+  color: #032A3B;
+  text-decoration: none;
+}
+.blogLink:hover{
+  color: #c2e6ff;
+  text-decoration: none;
+}
+.Info{
+  font-size: .8rem;
+}

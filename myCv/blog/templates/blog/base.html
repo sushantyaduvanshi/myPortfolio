@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Bootstrap CDN -->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <!-- my Base Css -->
+  <link rel="stylesheet" href="{% static 'blog/stylesheet/base.css' %}">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark-blue fixed-top">
+  <a class="navbar-brand" href="{% url 'blog:blogListPage' %}">BLOGS</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'admin:index' %}">Admin <span class="sr-only">(current)</span></a>
+      </li>
+      {% if user.is_authenticated %}
+      <li>
+        <span class="navbar-text"> &nbsp &nbsp  &nbsp &nbsp</span>
+        <span class="navbar-text">Hey {{ user.username | title }}</span>
+      </li>
+      {% endif %}
+    </ul>
+    <span class="navbar-text">
+          {% if user.is_authenticated %}
+          <a href="{% url 'blog:userBlogListPage' %}">MyBlogs </a>
+          <span> | </span>
+          <a href="{% url 'blog:userDraftListPage' %}">Drafts </a>
+          <span> | </span>
+          {% endif %}
+          {% if user.is_authenticated %}
+          <a href="{% url 'blog:blogCreatePage' %}">WriteBlog </a>
+          {% else %}
+          <a href="{% url 'blog:loginPage' %}">WriteBlog </a>
+          {% endif %}
+          <span> | </span>
+          {% if user.is_authenticated %}
+          <a href="{% url 'blog:logoutPage' %}">Logout </a>
+          {% else %}
+          <a href="{% url 'blog:loginPage' %}">Login </a>
+          {% endif %}
+    </span>
+  </div>
+</nav>
+
+<header>
+  ...
+</header>
+<div class="container">
+  {% block body_block %}
+
+  {% endblock %}
+</div>
+
+</body>
+</html>
