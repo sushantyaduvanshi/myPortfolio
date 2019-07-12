@@ -104,7 +104,8 @@ body{
   font-size: 4rem;
 }
 #second > .container, #third > .container {
-  padding: 10vh;
+  padding: 5vh;
+  padding-top: 9vh;
 }
 .workImage{
   width: 100%;
