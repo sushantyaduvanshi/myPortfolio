@@ -108,15 +108,18 @@ def displayBlog(request, pk):
     if(blog.published_date!=None or request.user.is_superuser or request.user==blog.authorName):
         commentForm = forms.createComment()
         if(request.method == 'POST'):
-            commentForm = forms.createComment(request.POST)
-            if(commentForm.is_valid()):
-                comment = commentForm.save(commit=False)
-                comment.authorName = request.user
-                comment.post = blog
-                comment.save()
-                return HttpResponseRedirect(reverse('blog:blogDisplayPage', kwargs={'pk':pk}))
+            if(request.user.is_authenticated):
+                commentForm = forms.createComment(request.POST)
+                if(commentForm.is_valid()):
+                    comment = commentForm.save(commit=False)
+                    comment.authorName = request.user
+                    comment.post = blog
+                    comment.save()
+                    return HttpResponseRedirect(reverse('blog:blogDisplayPage', kwargs={'pk':pk}))
+                else:
+                    return HttpResponse(form.errors)
             else:
-                return HttpResponse(form.errors)
+                return HttpResponseRedirect(reverse('blog:loginPage'))
         else:
             return render(request, 'blog/blogDisplay.html', {'blog':blog,'commentForm':commentForm})
     else:
