@@ -18,7 +18,10 @@
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
+  <!-- my custom Css -->
   <link rel="stylesheet" href="{% static 'portfolio/style.css' %}">
+  <link rel="stylesheet" href="{% static 'portfolio/loading.css' %}">
+
 
   <!-- google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Monoton&display=swap" rel="stylesheet">
@@ -30,78 +33,89 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
-<body class="visible-hidden">
+<body class="visible-hidden loading">
 
-  <nav class="navbar navbar-expand-lg fixed-top">
-  <a class="navbar-brand" id="logo" href="#">SY</a>
-  </nav>
-
-  <div class="container-fluid " id="first">
-    <div id="dialog-container" class="container-fluid">
-    <div class="row">
-      <div class="col-lg-2 col-sm-12"></div>
-      <div class="col-lg-2 col-md-2 col-sm-10"><div id="myPic-box" class="visible-hidden"></div></div>
-      <div class="col-lg-6 col-md-8 col-sm-10 col-10"><div id="dialog-box" class="visible-hidden"><p id="dialog-text"></p></div></div>
-      <div class="col-lg-2"></div>
-    </div>
-    </div>
-
+  <div id="loading-body" class="container">
+    <div class="ball"></div>
+    <div class="ball"></div>
+    <div class="ball"></div>
+    <div class="ball"></div>
   </div>
 
-  <div class="container " id="second">
+  <div id="content-body" class="container-fluid">
 
-    <div class="container text-center">
-      <h2>My Work</h2>
-    </div>
+    <nav class="navbar navbar-expand-lg fixed-top ">
+    <a class="navbar-brand" id="logo" href="#">SY</a>
+    </nav>
 
-    <div class="container-fluid ">
-      <div class="row ">
-
-        <div class="col-lg-6 col-6 text-center nav-arrow">
-          <a href="#"><i id="left-icon" class='fas fa-arrow-circle-left'></i></a>
-        </div>
-        <!-- <div class="col-lg-4 col-sm-0"></div> -->
-        <div class="col-lg-6 col-6 text-center nav-arrow">
-          <a href="#"><i id="right-icon" class='fas fa-arrow-circle-right'></i></a>
-        </div>
-        <div class="col-lg-3 col-sm-0"></div>
-        <br>
-        <div class="col-lg-6 col-sm-12 text-center">
-
-            <img class="workImage" src="{% static 'portfolio/blogClone.png' %}" alt="Blog Clone" onclick="blogSite()">
-
-        </div>
-        <div class="col-lg-12 text-center">
-          <p id="workTitle">Blogging Website Clone</p>
-        </div>
-
+    <div class="container-fluid " id="first">
+      <div id="dialog-container" class="container-fluid">
+      <div class="row">
+        <div class="col-lg-2 col-sm-12"></div>
+        <div class="col-lg-2 col-md-2 col-sm-10"><div id="myPic-box" class="visible-hidden"></div></div>
+        <div class="col-lg-6 col-md-8 col-sm-10 col-10"><div id="dialog-box" class="visible-hidden"><p id="dialog-text"></p></div></div>
+        <div class="col-lg-2"></div>
       </div>
+      </div>
+
     </div>
 
+    <div class="container " id="second">
 
-  </div>
+      <div class="container text-center">
+        <h2>My Work</h2>
+      </div>
 
-  <div class="container-fluid " id="third">
-    <div class="container text-center ">
-      <h2>Contact</h2>
-    </div>
+      <div class="container-fluid ">
+        <div class="row ">
 
-    <div class="row text-center">
-      <div class="col-lg-2"></div>
-      <div class="col-lg-8 col-md-12">
-        <div class="contact ">
-          <p id="myName">Sushant Yadav</p>
-          <p id="profession">Full Stack Web Developer</p>
-          <p>
-            <ul type='none'>
-              <li><i class="fa fa-phone" style="font-size:24px"></i> <a href="tel:+918700206584">+918700206583</a> </li>
-              <li><i class="material-icons">email</i> <a href="mailto:sushantyadav0611@gamil.com">sushantyadav0611@gmail.com</a> </li>
-              <li><i class="material-icons">location_on</i> <a href="https://www.google.com/maps/@28.6829741,77.1408517,16z">New Delhi, Delhi, India</a> </li>
-            </ul>
-          </p>
+          <div class="col-lg-6 col-6 text-center nav-arrow">
+            <a href="#"><i id="left-icon" class='fas fa-arrow-circle-left'></i></a>
+          </div>
+          <!-- <div class="col-lg-4 col-sm-0"></div> -->
+          <div class="col-lg-6 col-6 text-center nav-arrow">
+            <a href="#"><i id="right-icon" class='fas fa-arrow-circle-right'></i></a>
+          </div>
+          <div class="col-lg-3 col-sm-0"></div>
+          <br>
+          <div class="col-lg-6 col-sm-12 text-center">
+
+              <img class="workImage" src="{% static 'portfolio/blogClone.png' %}" alt="Blog Clone" onclick="blogSite()">
+
+          </div>
+          <div class="col-lg-12 text-center">
+            <p id="workTitle">Blogging Website Clone</p>
+          </div>
+
         </div>
       </div>
-      <div class="col-lg-2"></div>
+
+
+    </div>
+
+    <div class="container-fluid " id="third">
+      <div class="container text-center ">
+        <h2>Contact</h2>
+      </div>
+
+      <div class="row text-center">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 col-md-12">
+          <div class="contact ">
+            <p id="myName">Sushant Yadav</p>
+            <p id="profession">Full Stack Web Developer</p>
+            <p>
+              <ul type='none'>
+                <li><i class="fa fa-phone" style="font-size:24px"></i> <a href="tel:+918700206584">+918700206583</a> </li>
+                <li><i class="material-icons">email</i> <a href="mailto:sushantyadav0611@gamil.com">sushantyadav0611@gmail.com</a> </li>
+                <li><i class="material-icons">location_on</i> <a href="https://www.google.com/maps/@28.6829741,77.1408517,16z">New Delhi, Delhi, India</a> </li>
+              </ul>
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-2"></div>
+      </div>
+
     </div>
 
   </div>
@@ -159,6 +173,10 @@
     body = document.querySelector('body')
     body.classList.toggle('visible-hidden')
 
+    contentBody = document.querySelector('#content-body')
+    loadingBody = document.querySelector('#loading-body')
+    setTimeout(function(){body.classList.toggle('loading');loadingBody.style.display='none';contentBody.style.display='block';},3500)
+
     dialogBox = document.querySelector('#dialog-box')
     dialogBox.classList.toggle('dialog-animate')
     dialogBox.classList.toggle('visible-hidden')
@@ -168,11 +186,11 @@
     myPic.classList.toggle('visible-hidden')
 
 
-    setTimeout(setMsg, 4200, write, 100)
-    setTimeout(setMsg, 6900, write, 100)
-    setTimeout(setMsg, 8500, write, 100)
-    setTimeout(setMsg, 11500, write, 100)
-    setTimeout(setMsg, 12500, write, 100)
+    setTimeout(setMsg, 6200, write, 100)
+    setTimeout(setMsg, 8600, write, 100)
+    setTimeout(setMsg, 10200, write, 100)
+    setTimeout(setMsg, 13200, write, 100)
+    setTimeout(setMsg, 14500, write, 100)
 
 
   }
