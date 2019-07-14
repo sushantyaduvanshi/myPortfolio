@@ -70,21 +70,24 @@
         <div class="row ">
 
           <div class="col-lg-6 col-6 text-center nav-arrow">
-            <a href="#"><i id="left-icon" class='fas fa-arrow-circle-left'></i></a>
+            <a onclick="toggleDisplay()"><i id="left-icon" class='fas fa-arrow-circle-left'></i></a>
           </div>
           <!-- <div class="col-lg-4 col-sm-0"></div> -->
           <div class="col-lg-6 col-6 text-center nav-arrow">
-            <a href="#"><i id="right-icon" class='fas fa-arrow-circle-right'></i></a>
+            <a onclick="toggleDisplay()"><i id="right-icon" class='fas fa-arrow-circle-right'></i></a>
           </div>
           <div class="col-lg-3 col-sm-0"></div>
           <br>
           <div class="col-lg-6 col-sm-12 text-center">
 
-              <img class="workImage" src="{% static 'portfolio/blogClone.png' %}" alt="Blog Clone" onclick="blogSite()">
+              <img id="blog" class="workImage" src="{% static 'portfolio/blogClone.png' %}" alt="Blog Clone" onclick="blogSite()">
+              <img id="social" class="workImage display-none" src="{% static 'socialClone/comingSoon.png' %}" alt="Blog Clone" onclick="socialCloneSite()">
+
 
           </div>
           <div class="col-lg-12 text-center">
-            <p id="workTitle">Blogging Website Clone</p>
+            <p id="blogTitle" class="workTitle">Blogging Website Clone</p>
+            <p id="socialTitle" class="workTitle display-none">Social Website Clone</p>
           </div>
 
         </div>
@@ -197,6 +200,17 @@
 
   function blogSite(){
     window.location.href = "{% url 'blog:blogIndexPage' %}"
+  }
+
+  function socialCloneSite(){
+    window.location.href = "{% url 'socialClone:indexPage' %}"
+  }
+
+  function toggleDisplay(){
+    document.querySelector('#blog').classList.toggle('display-none')
+    document.querySelector('#blogTitle').classList.toggle('display-none')
+    document.querySelector('#social').classList.toggle('display-none')
+    document.querySelector('#socialTitle').classList.toggle('display-none')
   }
 
 

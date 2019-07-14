@@ -38,6 +38,9 @@ body{
 .visible-hidden{
   visibility: hidden;
 }
+.display-none{
+  display: none;
+}
 .dialog-animate{
   animation-duration: 3s;
   animation-name: dialogSlidein;
@@ -117,7 +120,7 @@ body{
 .workImage:hover{
   box-shadow: 0 0 6px 3px white;
 }
-#workTitle{
+.workTitle{
   padding: 2vh;
   font-family: 'Baloo Bhaijaan', cursive;
   font-size: 2rem;

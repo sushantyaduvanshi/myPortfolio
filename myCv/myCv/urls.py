@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index.as_view(), name='indexPage'),
     path('blog/', include('blog.urls')),
+    path('socialClone/', include('socialClone.urls'))
 ]
