@@ -20,4 +20,5 @@ urlpatterns = [
     re_path(r'^delete/(?P<pk>\d+)$', views.deleteBlog.as_view(), name='blogDeletePage'),
     re_path(r'^aproveComment/(?P<pk>\d+)$', views.aproveComment, name='aproveCommentPage'),
     re_path(r'^deleteComment/(?P<pk>\d+)$', views.deleteComment.as_view(), name='deleteCommentPage'),
+    path('test', views.test.as_view(), name='testPage'),
 ]

@@ -97,11 +97,6 @@ def createBlog(request):
         return HttpResponseRedirect(reverse('blog:loginPage'))
 
 
-# class displayBlog(DetailView):
-#     model = Blog
-#     template_name = 'blog/blogDisplay.html'
-#     context_object_name = 'blog'
-
 
 def displayBlog(request, pk):
     blog = Blog.objects.get(pk=pk)
@@ -186,11 +181,5 @@ class deleteComment(DeleteView):
         else:
             raise Http404('Page not found')
 
-    # def get(self, request, pk, *args, **kwargs):
-    #     self.pk = pk
-    #
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     print(pk)
-    #     context['pk'] = pk
-    #     return context
+class test(TemplateView):
+    template_name = 'blog/test.html'
