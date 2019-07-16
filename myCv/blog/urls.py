@@ -1,5 +1,6 @@
 from django.urls import path, re_path
 from . import views
+from django.contrib.auth import views as auth_views
 
 
 app_name = 'blog'
@@ -8,9 +9,9 @@ app_name = 'blog'
 urlpatterns = [
     path('', views.index.as_view(), name='blogIndexPage'),
     path('list/', views.blogList.as_view(), name='blogListPage'),
-    path('user/register', views.userCreate, name = 'userRegisterPage'),
-    path('user/login',views.userLogin, name='loginPage'),
-    path('user/logout', views.userLogout, name='logoutPage'),
+    path('user/register', views.userCreate.as_view(), name = 'userRegisterPage'),
+    path('user/login', auth_views.LoginView.as_view(template_name='blog/login.html'), name='loginPage'),
+    path('user/logout', auth_views.logout_then_login, name='logoutPage'),
     path('createBlog',views.createBlog, name='blogCreatePage'),
     path('userBlogs', views.userBlogList.as_view(), name='userBlogListPage'),
     path('userDrafts', views.userDraftList.as_view(), name='userDraftListPage'),

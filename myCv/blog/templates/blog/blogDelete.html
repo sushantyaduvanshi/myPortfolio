@@ -2,13 +2,15 @@
 {% extends 'blog/base.html' %}
   {% block body_block %}
 
-    <h2>You sure want to Delete this post ?</h2>
+    <div class="container">
+      <div class="jumbotron"><h2>You sure want to Delete this post ?</h2></div>
+    </div>
 
     <form method="post">
       {% csrf_token %}
       <input type="submit" name="" value="DELETE" class="btn btn-danger">
       <a class="btn btn-primary" href="{% url 'blog:blogDisplayPage' pk=blog.id %}">Cancel</a>
-      
+
     </form>
 
 

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'portfolio',
     'blog',
     'socialClone',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +125,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR,]
+
+
+LOGIN_URL = None
+
+LOGIN_REDIRECT_URL = None

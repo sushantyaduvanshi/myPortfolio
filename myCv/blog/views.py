@@ -11,6 +11,15 @@ from django.utils import timezone
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.contrib.auth import views as auth_views
+
+from django.conf import settings
+
+
+# changing some settings variables for this app
+settings.LOGIN_URL = 'blog:loginPage'
+settings.LOGIN_REDIRECT_URL = 'blog:userBlogListPage'
+# settings.LOGOUT_REDIRECT_URL = 'blog:loginPage'
 
 
 # Create your views here.
@@ -25,6 +34,8 @@ class blogList(ListView):
     context_object_name = 'blogList'
 
 
+# login_url is defined in settings.py
+# via with django redirect to loginPage when login_required failed
 @method_decorator(login_required, name='dispatch')
 class userBlogList(ListView):
     model = Blog
@@ -39,62 +50,27 @@ class userDraftList(ListView):
     context_object_name = 'blogList'
 
 
-
-def userCreate(request):
-    form = forms.registrationForm()
-
-    if(request.method == 'POST'):
-        form = forms.registrationForm(request.POST)
-        if(form.is_valid):
-            print('validddddddd\n\n\n\n')
-            user = form.save(commit=False)
-            user.set_password(user.password)
-            user.save()
-            return HttpResponseRedirect(reverse('blog:loginPage'))
-        else:
-            return HttpResponse(user.errors)
-    else:
-        return render(request, 'blog/userRegister.html', {'form':form})
-
-
-def userLogin(request):
-    if(request.method == 'POST'):
-        Username = request.POST.get('username')
-        Pass = request.POST.get('password')
-        user = authenticate(username=Username, password=Pass)
-        print('\nhello : ',str(user),'\n')
-        if(user):
-            if(user.is_active):
-                login(request,user)
-                return HttpResponseRedirect(reverse('blog:userBlogListPage'))
-        else:
-            return HttpResponse('Invalid User or Password')
-    else:
-        return render(request, 'blog/login.html')
+class userCreate(CreateView):
+    template_name = 'blog/userRegister.html'
+    form_class = forms.registrationForm
+    success_url = reverse_lazy('blog:loginPage')
 
 
 @login_required
-def userLogout(request):
-    logout(request)
-    return HttpResponseRedirect(reverse('blog:loginPage'))
-
-
 def createBlog(request):
-    if(request.user.is_authenticated):
-        form = forms.createBlogForm()
-        if(request.method == 'POST'):
-            form = forms.createBlogForm(request.POST)
-            if(form.is_valid()):
-                blog = form.save(commit=False)
-                blog.authorName = User.objects.get(id=request.POST.get('authorName'))
-                blog.save()
-                return HttpResponseRedirect(reverse('blog:userDraftListPage'))
-            else:
-                return HttpResponse(user.errors)
+    form = forms.createBlogForm()
+    if(request.method == 'POST'):
+        form = forms.createBlogForm(request.POST)
+        if(form.is_valid()):
+            blog = form.save(commit=False)
+            blog.authorName = User.objects.get(id=request.POST.get('authorName'))
+            blog.save()
+            return HttpResponseRedirect(reverse('blog:userDraftListPage'))
         else:
-            return render(request, 'blog/blogCreate.html', {'form':form})
+            return HttpResponse(user.errors)
     else:
-        return HttpResponseRedirect(reverse('blog:loginPage'))
+        return render(request, 'blog/blogCreate.html', {'form':form})
+
 
 
 

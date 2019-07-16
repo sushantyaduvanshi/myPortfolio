@@ -6,10 +6,8 @@
     <div class="jumbotron bg-light-blue text-center"><h2 class="display-3 white">User Login</h2></div>
     <form method="post">
       {% csrf_token %}
-      <label for="username">UserName : </label>
-      <input type="text" name="username" placeholder="Enter Your Username">
-      <label for="password">PassWord : </label>
-      <input type="password" name="password" placeholder="Enter Password"><br><br>
+      {% load bootstrap4 %}
+      {% bootstrap_form form %}<br>
       <input type="submit" class="btn bg-dark-blue white" name="" value="Log In">
       <a class="btn btn-info" href="{% url 'blog:userRegisterPage' %}">SignUp</a>
     </form>
