@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  background-color: black;
+  color:white;
+}
+.glow-head{
+  text-shadow: 2px 2px 6px #FFffff;
+}
+.glow-box{
+  box-shadow: 0 0 8px 3px #ffffff;
+}
+.box-radius{
+  border-radius: 25px;
+}
+.box-hover:hover, .box-focus:focus,
+#id_username:focus, #id_password:focus,
+#id_password1:focus, #id_password2:focus,
+#id_message:focus, #id_group:focus{
+  box-shadow: 0 0 6px 2px #ffffff;
+  border: none;
+}
+.left-border{
+  box-shadow: -15px 0 9px -9px #ffffff;
+  padding-left: 3vw;
+  padding-top: 6vh;
+  padding-bottom: 6vh;
+}
+hr{
+  border: 1px groove white;
+}
+.date{
+  font-size: 12px;
+  color: grey;
+}
+.small-detail{
+  font-size: 16px;
+  color: grey;
+}
+.pad-top{
+  padding-top: 6vh;
+}
+.list-a{
+  text-decoration: none;
+  color: #ffffff;
+}
+.list-a:hover{
+  text-decoration: none;
+  color: #ffffff;
+  text-shadow: 0 0 6px #FFffff;
+}
+.text-18{
+  font-size: 18px;
+}

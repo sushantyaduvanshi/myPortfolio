@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+
+  {% block content %}
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-5">
+          {% block list_desc %}
+          {% endblock %}
+          <br><br>
+        </div>
+        <div class="col-lg-7 left-border box-radius">
+          {% block list_content %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+
+
+
+  {% endblock %}

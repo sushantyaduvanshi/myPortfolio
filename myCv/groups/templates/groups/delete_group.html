@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+
+  {% block content %}
+
+    {% if object.admin == user %}
+      <h2>Are you sure want to delete group:{{ object.name }} ???</h2>
+      <form method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-lg btn-outline-danger" value="Yes">
+        <a href="{{ view.success_url }}" class="btn btn-lg btn-outline-primary">No</a>
+      </form>
+    {% else %}
+      <h2>You Are not Authorized to delete this Group!!!</h2>
+    {% endif %}
+
+  {% endblock %}

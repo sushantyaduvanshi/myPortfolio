@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% extends 'posts/list_base.html' %}
+
+  {% block list_desc %}
+
+    <br>
+    <h2 class="glow-head">Groups Joined!</h2>
+    <h3 class="glow-head">@{{ user.username }}</h3>
+    <br>
+    <a href="{% url 'groups:listGroup' %}" class="btn btn-lg btn-outline-warning">Join Another</a>
+
+
+  {% endblock %}
+
+
+
+  {% block list_content %}
+
+    {% if object_list.count == 0 %}
+      <h3>No Group Is Joined Yet!!</h3>
+
+    {% else %}
+      <div class="row">
+      {% for group in object_list %}
+        <div class="col-lg-12">
+          <h4><a class="list-a" href="{% url 'groups:detailGroup' slug=group.slug %}">{{ group.name }}</a></h4>
+          <p class="small-detail">
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp {{ group.desc }}</p>
+          <div class="d-flex w-40 text-18 justify-content-between">
+    				<small class="text-muted">
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span class="badge badge-secondary">
+    					{{ group.members.count }}</span> member{{ group.members.count|pluralize }}</small>
+    				<small class="text-muted"><span class="badge badge-secondary">
+    					{{ group.groupPost.count }}</span> post{{ group.posts.count|pluralize }}</small>
+    			<span></span><span></span>
+    			</div>
+          <br><br>
+          <hr>
+          <br><br>
+        </div>
+      {% endfor %}
+      </div>
+    {% endif %}
+
+  {% endblock %}

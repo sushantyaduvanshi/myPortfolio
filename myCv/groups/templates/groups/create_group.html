@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+  {% block content %}
+
+    <form method="post">
+      {% csrf_token %}
+      {% load bootstrap4 %}
+      {% bootstrap_form form %}
+      <input type="submit" class="btn btn-lg btn-outline-primary" value="Create Group">
+    </form>
+
+  {% endblock %}

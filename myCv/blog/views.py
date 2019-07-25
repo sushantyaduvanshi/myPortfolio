@@ -6,6 +6,8 @@ from django.urls import reverse, reverse_lazy
 from . import forms
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.utils import timezone
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 
 # LOGIN imports
 from django.contrib.auth import authenticate, login, logout
@@ -16,10 +18,9 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 
 
-# changing some settings variables for this app
-settings.LOGIN_URL = 'blog:loginPage'
-settings.LOGIN_REDIRECT_URL = 'blog:userBlogListPage'
-# settings.LOGOUT_REDIRECT_URL = 'blog:loginPage'
+# some login variables for this app
+LOGIN_URL = 'blog:loginPage'
+LOGIN_REDIRECT_URL = 'blog:userBlogListPage'
 
 
 # Create your views here.
@@ -27,6 +28,15 @@ settings.LOGIN_REDIRECT_URL = 'blog:userBlogListPage'
 
 class index(TemplateView):
     template_name = 'blog/index.html'
+
+
+class loginUser(LoginView):
+    template_name = 'blog/login.html'
+
+    def get_success_url(self):
+        url = self.get_redirect_url()
+        return url or reverse_lazy(LOGIN_REDIRECT_URL)
+
 
 class blogList(ListView):
     model = Blog
@@ -36,15 +46,15 @@ class blogList(ListView):
 
 # login_url is defined in settings.py
 # via with django redirect to loginPage when login_required failed
-@method_decorator(login_required, name='dispatch')
-class userBlogList(ListView):
+class userBlogList(LoginRequiredMixin, ListView):
+    login_url = LOGIN_URL
     model = Blog
     template_name = 'blog/userBlogList.html'
     context_object_name = 'blogList'
 
 
-@method_decorator(login_required, name='dispatch')
-class userDraftList(ListView):
+class userDraftList(LoginRequiredMixin, ListView):
+    login_url = LOGIN_URL
     model = Blog
     template_name = 'blog/userDraftList.html'
     context_object_name = 'blogList'
@@ -56,7 +66,7 @@ class userCreate(CreateView):
     success_url = reverse_lazy('blog:loginPage')
 
 
-@login_required
+@login_required(login_url=LOGIN_URL)
 def createBlog(request):
     form = forms.createBlogForm()
     if(request.method == 'POST'):
@@ -118,8 +128,8 @@ def aproveComment(request, pk):
         raise Http404('Page not found')
 
 
-@method_decorator(login_required, name='dispatch')
-class updateBlog(UpdateView):
+class updateBlog(LoginRequiredMixin, UpdateView):
+    login_url = LOGIN_URL
     model = Blog
     fields = ['title','content']
     template_name = 'blog/blogUpdate.html'
@@ -132,8 +142,8 @@ class updateBlog(UpdateView):
             raise Http404('Page not found')
 
 
-@method_decorator(login_required, name='dispatch')
-class deleteBlog(DeleteView):
+class deleteBlog(LoginRequiredMixin, DeleteView):
+    login_url = LOGIN_URL
     model = Blog
     template_name = 'blog/blogDelete.html'
     success_url = reverse_lazy('blog:userBlogListPage')
@@ -145,8 +155,8 @@ class deleteBlog(DeleteView):
             raise Http404('Page not found')
 
 
-@method_decorator(login_required, name='dispatch')
-class deleteComment(DeleteView):
+class deleteComment(LoginRequiredMixin, DeleteView):
+    login_url = LOGIN_URL
     model = Comment
     success_url = ''
 

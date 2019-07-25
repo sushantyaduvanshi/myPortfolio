@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% extends 'posts/list_base.html' %}
+
+  {% block list_desc %}
+    <br>
+    <h2 class="glow-head">{{ group.name }}</h2>
+    <p class="date">Created On : {{ group.createdAt }}</p>
+    <p class="small-detail">Members Count : {{ group.groupMember.count }}</p>
+    <h5>{{ group.desc }}</h5>
+    <br><br>
+    {% if user not in group.members.all %}
+      <a href="{% url 'groups:joinGroup' slug=group.slug %}" class="btn btn-lg btn-outline-primary">Join</a>
+    {% else %}
+      <a href="{% url 'groups:leaveGroup' slug=group.slug %}" class="btn btn-lg btn-outline-warning">Leave</a>
+    {% endif %}
+    {% if user == group.admin %}
+      <a href="{% url 'groups:deleteGroup' slug=group.slug %}" class="btn btn-lg btn-outline-danger">Delete Group</a>
+    {% endif %}
+
+  {% endblock %}
+
+
+
+  {% block list_content %}
+
+
+    {% if group.groupPost.count == 0 %}
+      <h3>No Post in this Group Yet!!</h3>
+
+    {% else %}
+      <div class="row">
+        {% for post in group.groupPost.all %}
+          <div class="col-lg-12">
+            <h4>{{ post.message }}</h4>
+            <p class="date">
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp by <a class="small-detail list-a" href="{% url 'posts:listUserPosts' slug=post.publisher %}">@{{ post.publisher }}</a>, on {{ post.createdAt }}</p>
+
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            {% if group.admin == user %}
+              <a class="btn btn-sm btn-outline-danger" href="{% url 'posts:deletePost' pk=post.pk %}">Delete Post</a>
+            {% endif %}
+            <br><br>
+            <hr>
+            <br><br>
+
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+  {% endblock %}

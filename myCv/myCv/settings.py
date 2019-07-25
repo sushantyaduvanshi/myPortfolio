@@ -41,8 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'portfolio',
     'blog',
-    'socialClone',
     'bootstrap4',
+    'accounts',
+    'groups',
+    'posts',
 ]
 
 MIDDLEWARE = [
@@ -127,6 +129,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR,]
 
 
-LOGIN_URL = None
-
-LOGIN_REDIRECT_URL = None
+# LOGIN_URL = None
+#
+# LOGIN_REDIRECT_URL = None

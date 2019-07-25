@@ -15,11 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from portfolio import views
+from portfolio import views as portfolioViews
+from accounts import views as socialAccountsViews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index.as_view(), name='indexPage'),
+    path('', portfolioViews.index.as_view(), name='indexPage'),
     path('blog/', include('blog.urls')),
-    path('socialClone/', include('socialClone.urls'))
+    path('starSocial/posts/', include('posts.urls')),
+    path('starSocial/groups/', include('groups.urls')),
+    path('starSocial/accounts/', include('accounts.urls')),
+    path('starSocial/', socialAccountsViews.index.as_view(), name='starSocialIndexPage'),
 ]
