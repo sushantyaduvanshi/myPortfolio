@@ -63,3 +63,11 @@ class deletePost(LoginRequiredMixin, generic.DeleteView):
     model = Post
     template_name = 'posts/delete_post.html'
     success_url = reverse_lazy('posts:listPosts')
+
+    # For authenticating and avoiding csrf_token hijacking
+    def post(self, request, pk):
+        if(request.user == Post.objects.get(pk=pk).publisher):
+            super().post(request, pk)
+            return HttpResponseRedirect(self.success_url)
+        else:
+            raise Http404

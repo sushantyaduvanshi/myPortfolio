@@ -73,6 +73,14 @@ class deleteGroup(LoginRequiredMixin, generic.DeleteView):
     template_name = 'groups/delete_group.html'
     success_url = reverse_lazy('groups:listGroup')
 
+    # For authenticating and avoiding csrf_token hijacking
+    def post(self, request, slug):
+        if(request.user == Group.objects.get(slug=slug).admin):
+            super().post(request, slug)
+            return HttpResponseRedirect(self.success_url)
+        else:
+            raise Http404
+
 
 @login_required(login_url=LOGIN_URL)
 def joinGroup(request, slug):
