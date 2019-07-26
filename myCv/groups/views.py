@@ -3,7 +3,7 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Group, GroupMember
 from .forms import createGroupForm
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.decorators import login_required
 

@@ -4,7 +4,7 @@ from .models import Post
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import newPostForm
 from django import forms
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 
