@@ -96,12 +96,14 @@ body{
   }
   20% {
     visibility: hidden;
-    height: 10px;
-    width: 10px;
+    height: 2vh;
+    width: 2vh;
   }
 
   100% {
     visibility: visible;
+    height: 15vh;
+    width: 15vh;
   }
 }
 

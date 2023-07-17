@@ -198,25 +198,32 @@
 
     contentBody = document.querySelector('#content-body')
     loadingBody = document.querySelector('#loading-body')
-    ti = setInterval(()=>{
-      if(profilePicLoaded && bgImgLoaded){
-        body.classList.toggle('loading');
-        loadingBody.style.display='none';
-        contentBody.style.display='block';
-        clearInterval(ti);
-      }
-    }, 500);
+    setTimeout(()=>{
+      ti = setInterval(()=>{
+        if(profilePicLoaded && bgImgLoaded){
+          body.classList.toggle('loading');
+          loadingBody.style.display='none';
+          contentBody.style.display='block';
+          myPic.classList.toggle('myPic-animate');
+          myPic.classList.toggle('visible-hidden');
+          setTimeout(()=>{
+            dialogBox.classList.toggle('visible-hidden');
+            dialogBox.classList.toggle('dialog-animate');
+          }, 500);
+          clearInterval(ti);
+        }
+      }, 100);
+    }, 2300);
+
+    myPic = document.querySelector('#myPic-box')
 
     dialogBox = document.querySelector('#dialog-box')
     dialogBox.addEventListener("animationend", setMsg);
 
-    myPic = document.querySelector('#myPic-box')
-    myPic.classList.toggle('myPic-animate')
-    myPic.classList.toggle('visible-hidden')
-    myPic.addEventListener("animationend", ()=>{
-      dialogBox.classList.toggle('visible-hidden');
-      dialogBox.classList.toggle('dialog-animate');
-    });
+    // myPic.addEventListener("animationend", ()=>{
+    //   dialogBox.classList.toggle('visible-hidden');
+    //   dialogBox.classList.toggle('dialog-animate');
+    // });
 
   }
 
