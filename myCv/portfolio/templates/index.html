@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load staticfiles %}
+{% load static %}
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -106,7 +106,7 @@
         <div class="col-lg-8 col-md-12">
           <div class="contact ">
             <p id="myName">Sushant Yadav</p>
-            <p id="profession">Full Stack Web Developer</p>
+            <p id="profession">Senior Software Developer</p>
             <p>
               <ul type='none'>
                 <li><i class="fa fa-phone" style="font-size:24px"></i> <a href="tel:+918700206584">+918700206583</a> </li>
@@ -128,47 +128,67 @@
 
 <script type="text/javascript">
 
+  var profilePic=new Image();
+  var profilePicLoaded = false;
+  profilePic.onload = () => profilePicLoaded=true;
+  var bgImg=new Image();
+  var bgImgLoaded = false;
+  bgImg.onload = () => bgImgLoaded=true;
+  profilePic.src = "{% static 'portfolio/myPic.jpg' %}";
+  bgImg.src = "{% static 'portfolio/starry_sky_stars_night.jpg' %}";
+
   var itImg = document.querySelector('#ITcomponents')
 
   var dialog = document.querySelector('#dialog-text')
+
+  var msg = 0
+  var string = ''
+  var ti = null
+
+  function reverse(){
+    if(dialog.textContent.length != 0){
+      dialog.textContent = dialog.textContent.slice(0, dialog.textContent.length-1);
+    }
+    else{
+      clearTimeout(ti);
+      setMsg();
+    }
+  }
 
   function write(){
     if(string.length != 0){
       dialog.textContent += string[0]
       string = string.slice(1,string.length)
-      console.log(string)
     }
     else{
-      clearTimeout(ti)
+      clearTimeout(ti);
+      setTimeout(()=>{
+        ti = setInterval(reverse, 30);
+      }, 600)
     }
   }
-
-  msg = 0
-  string = ''
-  ti = null
 
   function setMsg(){
     dialog.textContent = ''
     msg += 1
     switch (msg) {
       case 1:
-        string = 'Hey There ...'
+        string = 'Hey There!';
         break;
       case 2:
-        string = 'My name is'
+        string = 'My name is';
         break;
       case 3:
-        string = 'Sushant Yadav.'
+        string = 'Sushant Yadav.';
         break;
-        case 4:
-        string = "I'm a"
+      case 4:
+        string = "I'm a";
         break;
-        case 5:
-        string = 'Web Developer.'
+      case 5:
+        string = 'Software Developer.';
         break;
-
     }
-    ti = setInterval(write, 100)
+    ti = setInterval(write, 80);
   }
 
   document.querySelector('body').onload = function(){
@@ -178,23 +198,25 @@
 
     contentBody = document.querySelector('#content-body')
     loadingBody = document.querySelector('#loading-body')
-    setTimeout(function(){body.classList.toggle('loading');loadingBody.style.display='none';contentBody.style.display='block';},3500)
+    ti = setInterval(()=>{
+      if(profilePicLoaded && bgImgLoaded){
+        body.classList.toggle('loading');
+        loadingBody.style.display='none';
+        contentBody.style.display='block';
+        clearInterval(ti);
+      }
+    }, 500);
 
     dialogBox = document.querySelector('#dialog-box')
-    dialogBox.classList.toggle('dialog-animate')
-    dialogBox.classList.toggle('visible-hidden')
+    dialogBox.addEventListener("animationend", setMsg);
 
     myPic = document.querySelector('#myPic-box')
     myPic.classList.toggle('myPic-animate')
     myPic.classList.toggle('visible-hidden')
-
-
-    setTimeout(setMsg, 6200, write, 100)
-    setTimeout(setMsg, 8600, write, 100)
-    setTimeout(setMsg, 10200, write, 100)
-    setTimeout(setMsg, 13200, write, 100)
-    setTimeout(setMsg, 14500, write, 100)
-
+    myPic.addEventListener("animationend", ()=>{
+      dialogBox.classList.toggle('visible-hidden');
+      dialogBox.classList.toggle('dialog-animate');
+    });
 
   }
 
