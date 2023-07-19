@@ -155,22 +155,26 @@
     }
   }
 
-  function write(){
+  function write(resetText){
     if(string.length != 0){
       dialog.textContent += string[0]
       string = string.slice(1,string.length)
     }
     else{
       clearTimeout(ti);
-      setTimeout(()=>{
-        ti = setInterval(reverse, 30);
-      }, 600)
+      if (resetText){
+        setTimeout(()=>{
+          ti = setInterval(reverse, 30);
+        }, 600)
+      }
+      
     }
   }
 
   function setMsg(){
     dialog.textContent = ''
     msg += 1
+    let resetText = true;
     switch (msg) {
       case 1:
         string = 'Hey There!';
@@ -186,9 +190,10 @@
         break;
       case 5:
         string = 'Software Developer.';
+        resetText = false;
         break;
     }
-    ti = setInterval(write, 80);
+    ti = setInterval(write, 80, resetText);
   }
 
   document.querySelector('body').onload = function(){
@@ -219,11 +224,6 @@
 
     dialogBox = document.querySelector('#dialog-box')
     dialogBox.addEventListener("animationend", setMsg);
-
-    // myPic.addEventListener("animationend", ()=>{
-    //   dialogBox.classList.toggle('visible-hidden');
-    //   dialogBox.classList.toggle('dialog-animate');
-    // });
 
   }
 
