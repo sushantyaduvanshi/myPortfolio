@@ -1,8 +1,12 @@
+#loading-body {
+  padding-left: 50%;
+  margin-left: -10px;
+}
 .loading {
   margin:0 auto;
-  text-align:center;
+  /* text-align:center; */
   background: #191f27;
-  margin-top:40vh;
+  margin-top:50vh;
 }
 .ball {
   width: 15px;
