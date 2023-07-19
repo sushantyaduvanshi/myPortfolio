@@ -129,9 +129,9 @@ body{
   box-shadow: 0 0 6px 3px white;
 }
 .workTitle{
-  padding: 2vh;
+  padding: 1vh;
   font-family: 'Baloo Bhaijaan', cursive;
-  font-size: 2rem;
+  font-size: 4vh;
 }
 .nav-arrow{
   padding: 2vh;
