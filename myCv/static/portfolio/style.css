@@ -29,7 +29,7 @@ body{
   box-shadow: 0 0 6px 2px white;
   width: 100%;
   content: '';
-  height: 10vh;
+  min-height: 10vh;
   border-radius: 50px;
   text-align: center;
   padding: 2vh;
@@ -42,7 +42,7 @@ body{
   display: none;
 }
 .dialog-animate{
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-name: dialogSlidein;
 }
 @keyframes dialogSlidein {
@@ -72,7 +72,8 @@ body{
 #dialog-text{
   /* font-family: 'Baloo Bhaijaan', cursive; */
   font-family: 'Raleway';
-  font-size: 28px;
+  font-size: 4vh;
+  margin-bottom: 0;
 }
 #myPic-box{
   height: 15vh;
