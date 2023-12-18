@@ -1,5 +1,5 @@
 from django.db import models
-import misaka
+# import misaka
 from groups.models import Group
 from django.urls import reverse
 
@@ -23,7 +23,7 @@ class Post(models.Model):
         return self.message
 
     def save(self, *args, **kwargs):
-        self.message_html = misaka.html(self.message)
+        # self.message_html = misaka.html(self.message)
         super().save(*args, **kwargs)
 
     class Meta:

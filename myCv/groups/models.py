@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
-import misaka
+# import misaka
 from django.urls import reverse
 
 from django.contrib.auth import get_user_model
@@ -25,7 +25,7 @@ class Group(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name, allow_unicode=True)
-        self.desc_html = misaka.html(self.desc)
+        # self.desc_html = misaka.html(self.desc)
         super().save(*args, **kwargs)
 
     class Meta:
