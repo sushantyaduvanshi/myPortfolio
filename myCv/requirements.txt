@@ -1,3 +1,5 @@
 django==4.2.3
 django-bootstrap4==23.2
 # misaka==2.1.1
+requests==2.31.0
+python-dotenv==1.0.0
